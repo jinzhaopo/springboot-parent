@@ -2,6 +2,8 @@ package com.jzp.framework.mvc;
 
 import java.io.Serializable;
 
+import com.jzp.framework.util.InternationalUtil;
+
 /**
  * 
  * @ClassName: Message
@@ -23,6 +25,29 @@ public class Message implements Serializable {
 	 * 内容提示
 	 */
 	private String content;
+
+	public Message(MessageType messageType, String content, Object args[]) {
+		this.messageType = messageType;
+		this.content = InternationalUtil.getMessage(content, args);
+	}
 	
+	public static Message success()
 	
+
+	public MessageType getMessageType() {
+		return messageType;
+	}
+
+	public void setMessageType(MessageType messageType) {
+		this.messageType = messageType;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 }

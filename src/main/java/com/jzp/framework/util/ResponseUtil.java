@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.jzp.framework.mvc.WebError;
+
 /**
  * 
  * @ClassName: ResponseUtil
@@ -77,16 +79,32 @@ public class ResponseUtil {
 		return null;
 	}
 
-	// 输出后台 JSON错误消息，返回null
+	/**
+	 * 
+	 * @Title: ajaxJsonErrorMessage
+	 * @Description: 输出后台 JSON错误消息，返回null
+	 * @param message
+	 * @param response
+	 * @return
+	 * @return: String
+	 */
 	public static String ajaxJsonErrorMessage(String message, HttpServletResponse response) {
-		Error errors = Error.create();
+		WebError errors = WebError.create();
 		errors.addErrorString(message);
 		return errors.showErrorAjax(response);
 	}
 
-	// 输出前台JSON错误消息，返回null
+	/**
+	 * 
+	 * @Title: ajaxJsonFrontErrorMessage
+	 * @Description: 输出前台JSON错误消息，返回null
+	 * @param message
+	 * @param response
+	 * @return
+	 * @return: String
+	 */
 	public static String ajaxJsonFrontErrorMessage(String message, HttpServletResponse response) {
-		WebErrors errors = WebErrors.create();
+		WebError errors = WebError.create();
 		errors.addErrorString(message);
 		return errors.showFrontErrorAjax(response);
 	}
