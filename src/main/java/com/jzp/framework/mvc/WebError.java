@@ -151,12 +151,20 @@ public class WebError {
 		model.put(getErrorAttrName(), getErrors());
 	}
 
-	public void setErrors(List<String> errors) {
-		this.errors = errors;
-	}
-
+	/**
+	 * 
+	 * @Title: getErrorAttrName
+	 * @Description: 获取页面获取错误的标识
+	 * @return
+	 * @return: String
+	 */
 	protected String getErrorAttrName() {
 		return Constant.ERROR_ATTR_NAME;
+	}
+
+	/* get and set */
+	public void setErrors(List<String> errors) {
+		this.errors = errors;
 	}
 
 }

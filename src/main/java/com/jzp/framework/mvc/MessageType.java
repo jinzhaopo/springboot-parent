@@ -9,5 +9,16 @@ package com.jzp.framework.mvc;
  * @date: 2017年5月25日 上午10:19:30
  */
 public enum MessageType {
-	SUCCESS, WARN, ERROR;
+	/**
+	 * 成功
+	 */
+	SUCCESS,
+	/**
+	 * 警告
+	 */
+	WARN,
+	/**
+	 * 错误
+	 */
+	ERROR;
 }

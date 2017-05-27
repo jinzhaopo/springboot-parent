@@ -24,7 +24,7 @@ public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
 	 * 
 	 * @return
 	 */
-	public Long selectNextId();
+	Long selectNextId();
 
 	/**
 	 * 
@@ -35,5 +35,5 @@ public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
 	 * @return
 	 * @return: List
 	 */
-	public List getListByXml(Map<String, Object> filterParams);
+	List getListByXml(Map<String, Object> filterParams);
 }

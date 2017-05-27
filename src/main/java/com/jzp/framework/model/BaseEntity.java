@@ -31,6 +31,39 @@ public abstract class BaseEntity implements Serializable {
 	@GeneratedValue(generator = "JDBC") // 使用jdbc是根据数据库的规则，可以实现save的时候返回id
 	private Long id;
 
+	/*
+	 * 重写的equals方法 (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (this == obj) {
+			return true;
+		}
+		if (!BaseEntity.class.isAssignableFrom(obj.getClass())) {
+			return false;
+		}
+		BaseEntity other = (BaseEntity) obj;
+		return getId() != null ? getId().equals(other.getId()) : false;
+	}
+
+	/*
+	 * 重写的hashCode方法 (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		int hashCode = 17;
+		hashCode += null == getId() ? 0 : getId().hashCode() * 31;
+		return hashCode;
+	}
+
+	/* get and set */
 	/**
 	 * 创建日期
 	 */
@@ -104,37 +137,4 @@ public abstract class BaseEntity implements Serializable {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-
-	/*
-	 * 重写的equals方法 (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (this == obj) {
-			return true;
-		}
-		if (!BaseEntity.class.isAssignableFrom(obj.getClass())) {
-			return false;
-		}
-		BaseEntity other = (BaseEntity) obj;
-		return getId() != null ? getId().equals(other.getId()) : false;
-	}
-
-	/*
-	 * 重写的hashCode方法 (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		int hashCode = 17;
-		hashCode += null == getId() ? 0 : getId().hashCode() * 31;
-		return hashCode;
-	}
-
 }

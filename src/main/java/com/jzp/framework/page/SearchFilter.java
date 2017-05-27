@@ -1,0 +1,274 @@
+package com.jzp.framework.page;
+
+import java.util.List;
+
+/**
+ * 
+ * @ClassName: SearchFilter
+ * @Description: 搜索类
+ * @author: jinzhaopo
+ * @version: V1.0
+ * @date: 2017年5月27日 下午2:27:57
+ */
+public class SearchFilter {
+
+	/**
+	 * 查询的字段
+	 */
+	private String fieldName;
+	/***
+	 * 操作
+	 */
+	private Operator operator;
+	/**
+	 * 字段的值
+	 */
+	private Object value;
+	/**
+	 * 字段的值
+	 */
+	private List values;
+
+	/**
+	 * 是否忽略大小写，默认是true
+	 */
+	private Boolean ignoreCase = true;
+
+	public SearchFilter() {
+		this.ignoreCase = false;
+	}
+
+	public SearchFilter(final String fieldName, Operator operator, Object value, boolean ignoreCase) {
+		this.fieldName = fieldName;
+		this.value = value;
+		this.operator = operator;
+		this.ignoreCase = ignoreCase;
+	}
+
+	public SearchFilter(final String fieldName, final Operator operator, final Object value) {
+		this.fieldName = fieldName;
+		this.value = value;
+		this.operator = operator;
+	}
+
+	public SearchFilter(String fieldName, Object value, Operator operator, List values, Boolean ignoreCase) {
+		super();
+		this.fieldName = fieldName;
+		this.value = value;
+		this.operator = operator;
+		this.values = values;
+		this.ignoreCase = ignoreCase;
+	}
+
+	/**
+	 * 
+	 * @Title: eq
+	 * @Description: 获取相等的查询条件
+	 * @param property
+	 * @param value
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter eq(String property, Object value) {
+		return new SearchFilter(property, Operator.EQ, value);
+	}
+
+	/**
+	 * 
+	 * @Title: eq
+	 * @Description: 获取相等的查询条件
+	 * @param property
+	 * @param value
+	 * @param ignoreCase
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter eq(String property, Object value, boolean ignoreCase) {
+		return new SearchFilter(property, Operator.EQ, value, ignoreCase);
+	}
+
+	/**
+	 * 
+	 * @Title: ne
+	 * @Description: 获取不相等的查询条件
+	 * @param property
+	 * @param value
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter ne(String property, Object value) {
+		return new SearchFilter(property, Operator.NE, value);
+	}
+
+	/**
+	 * 
+	 * @Title: ne
+	 * @Description: 获取不相等的查询条件
+	 * @param property
+	 * @param value
+	 * @param ignoreCase
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter ne(String property, Object value, boolean ignoreCase) {
+		return new SearchFilter(property, Operator.NE, value, ignoreCase);
+	}
+
+	/**
+	 * 
+	 * @Title: gt
+	 * @Description: 获取>的查询条件
+	 * @param property
+	 * @param value
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter gt(String property, Object value) {
+		return new SearchFilter(property, Operator.GT, value);
+	}
+
+	/**
+	 * 
+	 * @Title: lt
+	 * @Description: 获取<的查询条件
+	 * @param property
+	 * @param value
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter lt(String property, Object value) {
+		return new SearchFilter(property, Operator.LT, value);
+	}
+
+	/**
+	 * 
+	 * @Title: ge
+	 * @Description: 获取》=的查询条件
+	 * @param property
+	 * @param value
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter ge(String property, Object value) {
+		return new SearchFilter(property, Operator.GE, value);
+	}
+
+	/**
+	 * 
+	 * @Title: le
+	 * @Description: 获取《=的查询条件
+	 * @param property
+	 * @param value
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter le(String property, Object value) {
+		return new SearchFilter(property, Operator.LE, value);
+	}
+
+	/**
+	 * 
+	 * @Title: like
+	 * @Description: 获取like的查询条件
+	 * @param property
+	 * @param value
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter like(String property, Object value) {
+		return new SearchFilter(property, Operator.LIKE, value);
+	}
+
+	/**
+	 * 
+	 * @Title: in
+	 * @Description: 获取in的查询条件
+	 * @param property
+	 * @param value
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter in(String property, List value) {
+		return new SearchFilter(property, null, Operator.IN, value, false);
+	}
+
+	/**
+	 * 
+	 * @Title: notIn
+	 * @Description: 获取not in的查询条件
+	 * @param property
+	 * @param value
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter notIn(String property, List value) {
+		return new SearchFilter(property, null, Operator.NOTIN, value, false);
+	}
+
+	/**
+	 * 
+	 * @Title: isNull
+	 * @Description: 获取 是null的查询条件
+	 * @param property
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter isNull(String property) {
+		return new SearchFilter(property, Operator.ISNULL, null);
+	}
+
+	/**
+	 * 
+	 * @Title: isNotNull
+	 * @Description: 获取不是null的查询条件
+	 * @param property
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter isNotNull(String property) {
+		return new SearchFilter(property, Operator.ISNOTNULL, null);
+	}
+
+	/* get and set */
+
+	public String getFieldName() {
+		return fieldName;
+	}
+
+	public List getValues() {
+		return values;
+	}
+
+	public void setValues(List values) {
+		this.values = values;
+	}
+
+	public Boolean getIgnoreCase() {
+		return ignoreCase;
+	}
+
+	public void setIgnoreCase(Boolean ignoreCase) {
+		this.ignoreCase = ignoreCase;
+	}
+
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
+	}
+
+	public Operator getOperator() {
+		return operator;
+	}
+
+	public void setOperator(Operator operator) {
+		this.operator = operator;
+	}
+
+	public Object getValue() {
+		return value;
+	}
+
+	public void setValue(Object value) {
+		this.value = value;
+	}
+
+}

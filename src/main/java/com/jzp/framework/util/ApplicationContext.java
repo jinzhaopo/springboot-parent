@@ -23,42 +23,16 @@ public class ApplicationContext implements ServletContextAware {
 
 	private static ServletContext servletContext;
 
-	public void setServletContext(ServletContext arg0) {
-		this.servletContext = arg0;
-
-	}
-
 	/**
-	 * 获取上下文
 	 * 
+	 * @Title: getSessionAttr
+	 * @Description: 根据key获取session中的value
+	 * @param key
 	 * @return
+	 * @return: Object
 	 */
-	public static ServletContext getContext() {
-		return servletContext;
-	}
-
-	/**
-	 * 获取ip
-	 * 
-	 * @return
-	 */
-	public static String getRemoteIp() {
-		HttpServletRequest request = ApplicationContext.getRequest();
-		String ip = request.getHeader("x-forwarded-for");
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("Proxy-Client-IP");
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("WL-Proxy-Client-IP");
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getRemoteAddr();
-		}
-		return ip;
-	}
-
 	public static Object getSessionAttr(String key) {
-		HttpSession session = getRequest().getSession(false);
+		HttpSession session = RequestUtil.getRequest().getSession(false);
 		if (session == null) {
 			return null;
 		} else {
@@ -66,8 +40,16 @@ public class ApplicationContext implements ServletContextAware {
 		}
 	}
 
+	/**
+	 * 
+	 * @Title: getCookie
+	 * @Description: 根据name获取cookie
+	 * @param name
+	 * @return
+	 * @return: Cookie
+	 */
 	public static Cookie getCookie(String name) {
-		Cookie[] cookies = getRequest().getCookies();
+		Cookie[] cookies = RequestUtil.getRequest().getCookies();
 		if (cookies != null) {
 			for (Cookie c : cookies) {
 				if (c.getName().equals(name)) {
@@ -78,8 +60,16 @@ public class ApplicationContext implements ServletContextAware {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @Title: getSessionId
+	 * @Description: 获取sessionid
+	 * @param isCreate
+	 * @return
+	 * @return: String
+	 */
 	public static String getSessionId(boolean isCreate) {
-		HttpSession session = getRequest().getSession(isCreate);
+		HttpSession session = RequestUtil.getRequest().getSession(isCreate);
 		if (session == null) {
 			return null;
 		} else {
@@ -87,26 +77,73 @@ public class ApplicationContext implements ServletContextAware {
 		}
 	}
 
+	/**
+	 * 
+	 * @Title: setSessionAttr
+	 * @Description: key-value设置到session中
+	 * @param key
+	 * @param value
+	 * @return: void
+	 */
 	public static void setSessionAttr(String key, Object value) {
-		HttpSession session = getRequest().getSession(false);
+		HttpSession session = RequestUtil.getRequest().getSession(false);
 		if (session == null) {
-			session = getRequest().getSession(true);
+			session = RequestUtil.getRequest().getSession(true);
 		}
 		session.setAttribute(key, value);
 	}
 
+	/**
+	 * 
+	 * @Title: removeAttribute
+	 * @Description: 根据key移除session中的值
+	 * @param key
+	 * @return: void
+	 */
 	public static void removeAttribute(String key) {
-		HttpSession session = getRequest().getSession(false);
+		HttpSession session = RequestUtil.getRequest().getSession(false);
 		session.removeAttribute(key);
 	}
 
+	/**
+	 * 
+	 * @Title: getAppRealPath
+	 * @Description: 获取真实路径
+	 * @param path
+	 * @return
+	 * @return: String
+	 */
 	public static String getAppRealPath(String path) {
 		return servletContext.getRealPath(path);
 	}
+	/**
+	 * 
+	 * @Title: getContentPath
+	 * @Description: 获取相对路径
+	 * @return
+	 * @return: String
+	 */
+	public static String getContentPath(){
+		return servletContext.getContextPath();
+	}
+	
+	
 
-	public static HttpServletRequest getRequest() {
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		return request;
+	/* get and set */
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext = servletContext;
+
+	}
+
+	/**
+	 * 
+	 * @Title: getContext
+	 * @Description: 获取上下问
+	 * @return
+	 * @return: ServletContext
+	 */
+	public static ServletContext getContext() {
+		return servletContext;
 	}
 
 }

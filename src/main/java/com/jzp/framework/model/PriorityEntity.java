@@ -21,6 +21,28 @@ public abstract class PriorityEntity extends BaseEntity implements Comparable {
 	@OrderBy(value = "asc")
 	private Long priority;
 
+	/*
+	 * 重写方法 (non-Javadoc)
+	 * 
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	public int compareTo(Object obj) {
+		return compareTo((PriorityEntity) obj);
+	}
+
+	/**
+	 * 
+	 * @Title: compareTo
+	 * @Description: 实现compareTo方法
+	 * @param priorityEntity
+	 * @return
+	 * @return: int
+	 */
+	public int compareTo(PriorityEntity priorityEntity) {
+		return new CompareToBuilder().append(getPriority(), priorityEntity.getPriority()).append(getId(), priorityEntity.getId()).toComparison();
+	}
+
+	/* get and set */
 	/**
 	 * 获取排序字段
 	 * 
@@ -38,25 +60,5 @@ public abstract class PriorityEntity extends BaseEntity implements Comparable {
 	 */
 	public void setPriority(Long priority) {
 		this.priority = priority;
-	}
-
-	/*
-	 * 重写方法 (non-Javadoc)
-	 * 
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	public int compareTo(Object obj) {
-		return compareTo((PriorityEntity) obj);
-	}
-
-	/**
-	 * 实现compareTo方法
-	 * 
-	 * @param priorityEntity
-	 *            排序对象
-	 * @return 排序结果
-	 */
-	public int compareTo(PriorityEntity priorityEntity) {
-		return new CompareToBuilder().append(getPriority(), priorityEntity.getPriority()).append(getId(), priorityEntity.getId()).toComparison();
 	}
 }

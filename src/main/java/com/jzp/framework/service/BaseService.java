@@ -13,63 +13,56 @@ import com.jzp.framework.model.BaseEntity;
  * @date: 2017年5月26日 上午11:18:35
  */
 public interface BaseService<T extends BaseEntity> {
+
 	/**
 	 * 
-	 * @Title: queryById
-	 * @Description: 根据id进行查询
+	 * @Title: getAll
+	 * @Description: 获取所有的数据
+	 * @return
+	 * @return: List<T>
+	 */
+	public List<T> getAll();
+
+	/**
+	 * 
+	 * @Title: get
+	 * @Description: 根据id获取对象
 	 * @param id
 	 * @return
 	 * @return: T
 	 */
-	public T queryById(Long id);
+	public T get(Long id);
 
 	/**
 	 * 
-	 * @Title: queryByIds
-	 * @Description: 根据ids进行查询
+	 * @Title: get
+	 * @Description: 根据ids获取对象
 	 * @param ids
 	 * @return
 	 * @return: List<T>
 	 */
-	public List<T> queryByIds(Long ids);
+	public List<T> getList(List<Long> ids);
 
 	/**
 	 * 
-	 * @Title: queryAll
-	 * @Description: 查询所有
-	 * @return
-	 * @return: List<T>
-	 */
-	public List<T> queryAll();
-
-	/**
-	 * 
-	 * @Title: queryOne
-	 * @Description: 根据条件查询一条数据，如果有多条数据会抛出异常
+	 * @Title: get
+	 * @Description: 根据t获取数据
 	 * @param t
 	 * @return
 	 * @return: T
 	 */
-	public T queryOne(T t);
+	public T get(T t);
 
 	/**
 	 * 
-	 * @Title: queryList
-	 * @Description: 根据条件查询数据列表
+	 * @Title: getList
+	 * @Description: 根据t获取集合
 	 * @param t
 	 * @return
 	 * @return: T
 	 */
-	public List<T> queryList(T t);
+	public List<T> getList(T t);
 	
-	public Page
-	/**
-	 * 
-	 * @Title: getNextId
-	 * @Description: 获取下一条记录的id
-	 * @return
-	 * @return: Long
-	 */
-	public Long getNextId();
+	public Pager
 
 }

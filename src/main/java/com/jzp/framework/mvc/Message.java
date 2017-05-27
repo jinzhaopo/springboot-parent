@@ -26,14 +26,95 @@ public class Message implements Serializable {
 	 */
 	private String content;
 
+	/**
+	 * 
+	 * @Title:Message
+	 * @Description:获取消息
+	 * @param messageType
+	 * @param content
+	 * @param args
+	 */
 	public Message(MessageType messageType, String content, Object args[]) {
 		this.messageType = messageType;
 		this.content = InternationalUtil.getMessage(content, args);
 	}
-	
-	public static Message success()
-	
 
+	/**
+	 * 
+	 * @Title: success
+	 * @Description: 成功消息
+	 * @param content
+	 * @param args
+	 * @return
+	 * @return: Message
+	 */
+	public static Message success(String content, Object args[]) {
+		return new Message(MessageType.SUCCESS, content, args);
+	}
+
+	/**
+	 * 
+	 * @Title: success
+	 * @Description: 成功消息
+	 * @param content
+	 * @return
+	 * @return: Message
+	 */
+	public static Message success(String content) {
+		return success(content, null);
+	}
+
+	/**
+	 * 
+	 * @Title: warn
+	 * @Description: 警告消息
+	 * @param content
+	 * @param args
+	 * @return
+	 * @return: Message
+	 */
+	public static Message warn(String content, Object args[]) {
+		return new Message(MessageType.WARN, content, args);
+	}
+
+	/**
+	 * 
+	 * @Title: warn
+	 * @Description: 警告消息
+	 * @param content
+	 * @return
+	 * @return: Message
+	 */
+	public static Message warn(String content) {
+		return warn(content, null);
+	}
+
+	/**
+	 * 
+	 * @Title: error
+	 * @Description: 错误消息
+	 * @param content
+	 * @param args
+	 * @return
+	 * @return: Message
+	 */
+	public static Message error(String content, Object args[]) {
+		return new Message(MessageType.ERROR, content, args);
+	}
+
+	/**
+	 * 
+	 * @Title: error
+	 * @Description: 错误消息
+	 * @param content
+	 * @return
+	 * @return: Message
+	 */
+	public static Message error(String content) {
+		return error(content, null);
+	}
+
+	/* get and set */
 	public MessageType getMessageType() {
 		return messageType;
 	}
