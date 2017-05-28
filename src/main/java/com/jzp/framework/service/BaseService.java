@@ -13,6 +13,8 @@ import com.jzp.framework.model.BaseEntity;
  * @date: 2017年5月26日 上午11:18:35
  */
 public interface BaseService<T extends BaseEntity> {
+	
+	public
 
 	/**
 	 * 

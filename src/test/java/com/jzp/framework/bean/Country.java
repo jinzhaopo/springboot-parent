@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Country {
+public class Coun try {
 	// 注意：被序列化的bean的private属性字段需要创建getter方法或者属性字段应该为public
 	private String country_id;
 	private Date birthDate;
