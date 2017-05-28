@@ -8,7 +8,7 @@ package com.jzp.framework.page;
  * @version: V1.0
  * @date: 2017年5月27日 下午2:06:37
  */
-public enum OrderType {
+public enum OrderTypeEnum {
 	asc, desc
 
 }

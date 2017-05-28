@@ -230,8 +230,4 @@ public class SearchFilterUtil {
 		return this;
 	}
 
-	public static void main(String[] args) {
-		List<SearchFilter> searchFilter = SearchFilterUtil.getInstance().addEq("id", 5).addGe("pro", "eee").getSearchFilter();
-		for()
-	}
 }

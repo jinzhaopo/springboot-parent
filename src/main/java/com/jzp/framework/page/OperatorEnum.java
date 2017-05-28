@@ -8,10 +8,10 @@ package com.jzp.framework.page;
  * @version: V1.0
  * @date: 2017年5月27日 下午2:29:26
  */
-public enum Operator {
+public enum OperatorEnum {
 
 	EQ("="), LIKE("like"), GT(">"), LT("<"), NE("<>"), GE(">="), LE("<="), IN("in"), ISNULL("is null"), ISNOTNULL("is not null"), ENUM("enum"), NOTIN("not in");
-	private Operator(String name) {
+	private OperatorEnum(String name) {
 		this.name = name;
 	}
 

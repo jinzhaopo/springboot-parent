@@ -116,7 +116,7 @@ public class WebError {
 	 * @return: String
 	 */
 	public String showErrorAjax(HttpServletResponse response) {
-		String json = JsonUtil.getInstance().obj2json(getErrors());
+		String json = JsonUtil.toJson(getErrors());
 		response.setStatus(400);
 		response.addHeader("Error-Json", json);
 		return ResponseUtil.renderJSON("{error:" + json + "}", response);
@@ -131,7 +131,7 @@ public class WebError {
 	 * @return: String
 	 */
 	public String showFrontErrorAjax(HttpServletResponse response) {
-		String json = JsonUtil.getInstance().obj2json(getErrors());
+		String json = JsonUtil.toJson(getErrors());
 		response.setStatus(400);
 		response.addHeader("errorStatus", "systemError");
 		return ResponseUtil.renderJSON("{error:" + json + "}", response);

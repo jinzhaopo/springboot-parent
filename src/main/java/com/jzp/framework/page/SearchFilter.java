@@ -19,7 +19,7 @@ public class SearchFilter {
 	/***
 	 * 操作
 	 */
-	private Operator operator;
+	private OperatorEnum operator;
 	/**
 	 * 字段的值
 	 */
@@ -38,20 +38,20 @@ public class SearchFilter {
 		this.ignoreCase = false;
 	}
 
-	public SearchFilter(final String fieldName, Operator operator, Object value, boolean ignoreCase) {
+	public SearchFilter(final String fieldName, OperatorEnum operator, Object value, boolean ignoreCase) {
 		this.fieldName = fieldName;
 		this.value = value;
 		this.operator = operator;
 		this.ignoreCase = ignoreCase;
 	}
 
-	public SearchFilter(final String fieldName, final Operator operator, final Object value) {
+	public SearchFilter(final String fieldName, final OperatorEnum operator, final Object value) {
 		this.fieldName = fieldName;
 		this.value = value;
 		this.operator = operator;
 	}
 
-	public SearchFilter(String fieldName, Object value, Operator operator, List values, Boolean ignoreCase) {
+	public SearchFilter(String fieldName, Object value, OperatorEnum operator, List values, Boolean ignoreCase) {
 		super();
 		this.fieldName = fieldName;
 		this.value = value;
@@ -70,7 +70,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter eq(String property, Object value) {
-		return new SearchFilter(property, Operator.EQ, value);
+		return new SearchFilter(property, OperatorEnum.EQ, value);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter eq(String property, Object value, boolean ignoreCase) {
-		return new SearchFilter(property, Operator.EQ, value, ignoreCase);
+		return new SearchFilter(property, OperatorEnum.EQ, value, ignoreCase);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter ne(String property, Object value) {
-		return new SearchFilter(property, Operator.NE, value);
+		return new SearchFilter(property, OperatorEnum.NE, value);
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter ne(String property, Object value, boolean ignoreCase) {
-		return new SearchFilter(property, Operator.NE, value, ignoreCase);
+		return new SearchFilter(property, OperatorEnum.NE, value, ignoreCase);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter gt(String property, Object value) {
-		return new SearchFilter(property, Operator.GT, value);
+		return new SearchFilter(property, OperatorEnum.GT, value);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter lt(String property, Object value) {
-		return new SearchFilter(property, Operator.LT, value);
+		return new SearchFilter(property, OperatorEnum.LT, value);
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter ge(String property, Object value) {
-		return new SearchFilter(property, Operator.GE, value);
+		return new SearchFilter(property, OperatorEnum.GE, value);
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter le(String property, Object value) {
-		return new SearchFilter(property, Operator.LE, value);
+		return new SearchFilter(property, OperatorEnum.LE, value);
 	}
 
 	/**
@@ -176,7 +176,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter like(String property, Object value) {
-		return new SearchFilter(property, Operator.LIKE, value);
+		return new SearchFilter(property, OperatorEnum.LIKE, value);
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter in(String property, List value) {
-		return new SearchFilter(property, null, Operator.IN, value, false);
+		return new SearchFilter(property, null, OperatorEnum.IN, value, false);
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter notIn(String property, List value) {
-		return new SearchFilter(property, null, Operator.NOTIN, value, false);
+		return new SearchFilter(property, null, OperatorEnum.NOTIN, value, false);
 	}
 
 	/**
@@ -214,7 +214,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter isNull(String property) {
-		return new SearchFilter(property, Operator.ISNULL, null);
+		return new SearchFilter(property, OperatorEnum.ISNULL, null);
 	}
 
 	/**
@@ -226,7 +226,7 @@ public class SearchFilter {
 	 * @return: SearchFilter
 	 */
 	public static SearchFilter isNotNull(String property) {
-		return new SearchFilter(property, Operator.ISNOTNULL, null);
+		return new SearchFilter(property, OperatorEnum.ISNOTNULL, null);
 	}
 
 	/* get and set */
@@ -255,11 +255,11 @@ public class SearchFilter {
 		this.fieldName = fieldName;
 	}
 
-	public Operator getOperator() {
+	public OperatorEnum getOperator() {
 		return operator;
 	}
 
-	public void setOperator(Operator operator) {
+	public void setOperator(OperatorEnum operator) {
 		this.operator = operator;
 	}
 

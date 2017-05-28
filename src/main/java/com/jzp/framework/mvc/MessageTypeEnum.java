@@ -8,7 +8,7 @@ package com.jzp.framework.mvc;
  * @version: V1.0
  * @date: 2017年5月25日 上午10:19:30
  */
-public enum MessageType {
+public enum MessageTypeEnum {
 	/**
 	 * 成功
 	 */

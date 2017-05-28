@@ -17,7 +17,7 @@ public class Order {
 	/**
 	 * 排序方式
 	 */
-	private OrderType orderType;
+	private OrderTypeEnum orderType;
 
 	/*get and set*/
 	public String getField() {
@@ -28,11 +28,11 @@ public class Order {
 		this.field = field;
 	}
 
-	public OrderType getOrderType() {
+	public OrderTypeEnum getOrderType() {
 		return orderType;
 	}
 
-	public void setOrderType(OrderType orderType) {
+	public void setOrderType(OrderTypeEnum orderType) {
 		this.orderType = orderType;
 	}
 

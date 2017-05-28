@@ -59,7 +59,7 @@ public class ResponseUtil {
 	 * 直接输出JSON.
 	 */
 	public static String renderJSON(Object obj, HttpServletResponse response) {
-		return render(JsonUtil.getInstance().obj2json(obj), "text/json;charset=UTF-8", response);
+		return render(JsonUtil.toJson(obj), "text/json;charset=UTF-8", response);
 	}
 
 	/**

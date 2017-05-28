@@ -20,7 +20,7 @@ public class Message implements Serializable {
 	/**
 	 * 消息类型
 	 */
-	private MessageType messageType;
+	private MessageTypeEnum messageType;
 	/**
 	 * 内容提示
 	 */
@@ -34,7 +34,7 @@ public class Message implements Serializable {
 	 * @param content
 	 * @param args
 	 */
-	public Message(MessageType messageType, String content, Object args[]) {
+	public Message(MessageTypeEnum messageType, String content, Object args[]) {
 		this.messageType = messageType;
 		this.content = InternationalUtil.getMessage(content, args);
 	}
@@ -49,7 +49,7 @@ public class Message implements Serializable {
 	 * @return: Message
 	 */
 	public static Message success(String content, Object args[]) {
-		return new Message(MessageType.SUCCESS, content, args);
+		return new Message(MessageTypeEnum.SUCCESS, content, args);
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class Message implements Serializable {
 	 * @return: Message
 	 */
 	public static Message warn(String content, Object args[]) {
-		return new Message(MessageType.WARN, content, args);
+		return new Message(MessageTypeEnum.WARN, content, args);
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class Message implements Serializable {
 	 * @return: Message
 	 */
 	public static Message error(String content, Object args[]) {
-		return new Message(MessageType.ERROR, content, args);
+		return new Message(MessageTypeEnum.ERROR, content, args);
 	}
 
 	/**
@@ -115,11 +115,11 @@ public class Message implements Serializable {
 	}
 
 	/* get and set */
-	public MessageType getMessageType() {
+	public MessageTypeEnum getMessageType() {
 		return messageType;
 	}
 
-	public void setMessageType(MessageType messageType) {
+	public void setMessageType(MessageTypeEnum messageType) {
 		this.messageType = messageType;
 	}
 
