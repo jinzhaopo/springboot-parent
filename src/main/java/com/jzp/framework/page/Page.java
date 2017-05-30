@@ -18,13 +18,13 @@ public class Page<T> extends PageInfo<T> {
 
 	private static final long serialVersionUID = -5255811398198396881L;
 	/**
-	 * 排序集合
+	 * 过滤条件
+	 */
+	private List<SearchFilter> searchFilters;
+	/**
+	 * 样本排序
 	 */
 	private List<Order> orders;
-	/**
-	 * 字段搜索集合
-	 */
-	private List<SearchFilter> filters;
 
 	public Page() {
 		super();
@@ -33,11 +33,8 @@ public class Page<T> extends PageInfo<T> {
 		this.setPageSize(20);// 设置每页的记录数
 		this.setTotal(0);// 设置总记录数
 		this.setPages(0);// 设置总页数
-		
-		orders = new ArrayList<Order>();
-		filters = new ArrayList<SearchFilter>();
-		
-		//默认排序createDate
+
+		// 默认排序createDate
 		Order order = new Order();
 		order.setField("createDate");
 		order.setOrderType(OrderTypeEnum.desc);
@@ -52,14 +49,12 @@ public class Page<T> extends PageInfo<T> {
 		this.orders = orders;
 	}
 
-	public List<SearchFilter> getFilters() {
-		return filters;
+	public List<SearchFilter> getSearchFilters() {
+		return searchFilters;
 	}
 
-	public void setFilters(List<SearchFilter> filters) {
-		this.filters = filters;
+	public void setSearchFilters(List<SearchFilter> searchFilters) {
+		this.searchFilters = searchFilters;
 	}
 
-	
-	
 }

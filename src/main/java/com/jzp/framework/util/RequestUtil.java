@@ -1,7 +1,7 @@
 package com.jzp.framework.util;
 
-import static com.jzp.framework.Constant.POST;
-import static com.jzp.framework.Constant.UTF8;
+import static com.jzp.framework.constant.MvcConstant.POST;
+import static com.jzp.framework.constant.MvcConstant.UTF8;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -38,7 +40,8 @@ public class RequestUtil {
 	 * @return: HttpServletRequest
 	 */
 	public static HttpServletRequest getRequest() {
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
 		return request;
 	}
 
@@ -225,7 +228,8 @@ public class RequestUtil {
 		return getRequestMap(request, prefix, true);
 	}
 
-	private static Map<String, String> getRequestMap(HttpServletRequest request, String prefix, boolean nameWithPrefix) {
+	private static Map<String, String> getRequestMap(HttpServletRequest request, String prefix,
+			boolean nameWithPrefix) {
 		Map<String, String> map = new HashMap<String, String>();
 		Enumeration<String> names = request.getParameterNames();
 		String name, key, value;
@@ -260,6 +264,88 @@ public class RequestUtil {
 			ip = request.getRemoteAddr();
 		}
 		return ip;
+	}
+
+	/**
+	 * 
+	 * @Title: getSessionAttr
+	 * @Description: 根据key获取session中的value
+	 * @param key
+	 * @return
+	 * @return: Object
+	 */
+	public static Object getSessionAttr(String key) {
+		HttpSession session = RequestUtil.getRequest().getSession(false);
+		if (session == null) {
+			return null;
+		} else {
+			return session.getAttribute(key);
+		}
+	}
+
+	/**
+	 * 
+	 * @Title: getCookie
+	 * @Description: 根据name获取cookie
+	 * @param name
+	 * @return
+	 * @return: Cookie
+	 */
+	public static Cookie getCookie(String name) {
+		Cookie[] cookies = RequestUtil.getRequest().getCookies();
+		if (cookies != null) {
+			for (Cookie c : cookies) {
+				if (c.getName().equals(name)) {
+					return c;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @Title: getSessionId
+	 * @Description: 获取sessionid
+	 * @param isCreate
+	 * @return
+	 * @return: String
+	 */
+	public static String getSessionId(boolean isCreate) {
+		HttpSession session = RequestUtil.getRequest().getSession(isCreate);
+		if (session == null) {
+			return null;
+		} else {
+			return session.getId();
+		}
+	}
+
+	/**
+	 * 
+	 * @Title: setSessionAttr
+	 * @Description: key-value设置到session中
+	 * @param key
+	 * @param value
+	 * @return: void
+	 */
+	public static void setSessionAttr(String key, Object value) {
+		HttpSession session = RequestUtil.getRequest().getSession(false);
+		if (session == null) {
+			session = RequestUtil.getRequest().getSession(true);
+		}
+		session.setAttribute(key, value);
+	}
+
+	/**
+	 * 
+	 * @Title: removeAttribute
+	 * @Description: 根据key移除session中的值
+	 * @param key
+	 * @return: void
+	 */
+	public static void removeAttribute(String key) {
+		HttpSession session = RequestUtil.getRequest().getSession(false);
+		session.removeAttribute(key);
 	}
 
 }

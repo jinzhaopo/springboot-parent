@@ -33,6 +33,10 @@ public class SearchFilter {
 	 * 是否忽略大小写，默认是true
 	 */
 	private Boolean ignoreCase = true;
+	/**
+	 * 是否是手写字段
+	 */
+	private Boolean handwrittenDield = false;
 
 	public SearchFilter() {
 		this.ignoreCase = false;
@@ -229,6 +233,38 @@ public class SearchFilter {
 		return new SearchFilter(property, OperatorEnum.ISNOTNULL, null);
 	}
 
+	/**
+	 * 
+	 * @Title: condition
+	 * @Description: 手写查询条件 length(name) > 5
+	 * @param condition
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter condition(String condition) {
+		SearchFilter sf = new SearchFilter();
+		sf.setHandwrittenDield(true);
+		sf.setFieldName(condition);
+		return sf;
+	}
+
+	/**
+	 * 
+	 * @Title: condition
+	 * @Description: 手写查询条件
+	 * @param condition
+	 * @param value
+	 * @return
+	 * @return: SearchFilter
+	 */
+	public static SearchFilter condition(String condition, Object value) {
+		SearchFilter sf = new SearchFilter();
+		sf.setHandwrittenDield(true);
+		sf.setFieldName(condition);
+		sf.setValue(value);
+		return sf;
+	}
+
 	/* get and set */
 
 	public String getFieldName() {
@@ -269,6 +305,14 @@ public class SearchFilter {
 
 	public void setValue(Object value) {
 		this.value = value;
+	}
+
+	public Boolean getHandwrittenDield() {
+		return handwrittenDield;
+	}
+
+	public void setHandwrittenDield(Boolean handwrittenDield) {
+		this.handwrittenDield = handwrittenDield;
 	}
 
 }

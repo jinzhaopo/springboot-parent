@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.util.Assert;
 
-import com.jzp.framework.Constant;
+import com.jzp.framework.constant.Constant;
+import com.jzp.framework.constant.MvcConstant;
 import com.jzp.framework.util.InternationalUtil;
 import com.jzp.framework.util.JsonUtil;
 import com.jzp.framework.util.ResponseUtil;
@@ -159,7 +160,7 @@ public class WebError {
 	 * @return: String
 	 */
 	protected String getErrorAttrName() {
-		return Constant.ERROR_ATTR_NAME;
+		return MvcConstant.ERROR_ATTR_NAME;
 	}
 
 	/* get and set */

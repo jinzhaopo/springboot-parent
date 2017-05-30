@@ -10,7 +10,7 @@ package com.jzp.framework.page;
  */
 public enum OperatorEnum {
 
-	EQ("="), LIKE("like"), GT(">"), LT("<"), NE("<>"), GE(">="), LE("<="), IN("in"), ISNULL("is null"), ISNOTNULL("is not null"), ENUM("enum"), NOTIN("not in");
+	EQ("="), LIKE("like"), GT(">"), LT("<"), NE("<>"), GE(">="), LE("<="), IN("in"), ISNULL("is null"), ISNOTNULL("is not null"), ENUM("enum"), NOTIN("not in"),NOTLIKE("not like");
 	private OperatorEnum(String name) {
 		this.name = name;
 	}
