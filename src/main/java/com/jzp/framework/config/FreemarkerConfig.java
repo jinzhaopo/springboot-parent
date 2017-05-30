@@ -78,8 +78,11 @@ public class FreemarkerConfig {
 		PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
 		
 		Properties properties = new Properties();
+		
+		
 		propertiesFactoryBean.setProperties(properties);
 		
-		instance.setStaticModels(staticModels);
+		//instance.setStaticModels(staticModels);
+		return null;
 	}
 }
