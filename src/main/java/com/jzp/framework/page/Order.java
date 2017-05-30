@@ -19,7 +19,17 @@ public class Order {
 	 */
 	private OrderTypeEnum orderType;
 
-	/*get and set*/
+	public Order() {
+		super();
+	}
+
+	public Order(String field, OrderTypeEnum orderType) {
+		super();
+		this.field = field;
+		this.orderType = orderType;
+	}
+
+	/* get and set */
 	public String getField() {
 		return field;
 	}
