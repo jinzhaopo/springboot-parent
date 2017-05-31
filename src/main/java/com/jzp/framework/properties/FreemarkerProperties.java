@@ -1,6 +1,7 @@
 package com.jzp.framework.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,8 +12,10 @@ import org.springframework.stereotype.Component;
  * @version: V1.0
  * @date: 2017年5月30日 下午9:28:01
  */
-@ConfigurationProperties(prefix = "template", value = "classpath:/config/freemarker.properties")
+@ConfigurationProperties(prefix = "template")
+@PropertySource("classpath:/config/freemarker.properties")
 @Component
+
 public class FreemarkerProperties {
 
 	/**

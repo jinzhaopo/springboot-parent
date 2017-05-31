@@ -24,7 +24,15 @@ public class GlobalDefaultExceptionHandler {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@ExceptionHandler(value = Exception.class)
+	/**
+	 * 
+	 * @Title: defaultErrorHandler
+	 * @Description: 数据库异常
+	 * @param req
+	 * @param e
+	 * @return: void
+	 */
+	@ExceptionHandler(value = SQLException.class)
 	public void defaultErrorHandler(HttpServletRequest req, Exception e) {
 		logger.error(e.getMessage());
 	}

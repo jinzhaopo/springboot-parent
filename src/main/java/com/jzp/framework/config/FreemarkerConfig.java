@@ -52,7 +52,7 @@ public class FreemarkerConfig {
 		settings.setProperty("defaultEncoding", freemarkerProperties.getEncoding());
 		settings.setProperty("url_escaping_charset", freemarkerProperties.getUrl_escaping_charset());
 		settings.setProperty("locale", freemarkerProperties.getLocale());
-		settings.setProperty("template_update_delay", freemarkerProperties.getLocale());
+		settings.setProperty("template_update_delay", freemarkerProperties.getUpdate_delay());
 		settings.setProperty("tag_syntax", "auto_detect");
 		settings.setProperty("whitespace_stripping", "true");
 		settings.setProperty("classic_compatible", "true");
@@ -90,5 +90,5 @@ public class FreemarkerConfig {
 
 		return instance;
 	}
-	
+
 }
