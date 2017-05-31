@@ -1,5 +1,6 @@
 package com.jzp.framework.config;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import com.jzp.framework.freemarker.FreemarkerStaticModels;
@@ -71,18 +74,21 @@ public class FreemarkerConfig {
 		return fmcf;
 	}
 
-
-	@Bean(name="freemarkerStaticModels")
+	@Bean(name = "freemarkerStaticModels")
 	public FreemarkerStaticModels getFreemarkerStaticModels() {
 		FreemarkerStaticModels instance = FreemarkerStaticModels.getInstance();
-		PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
-		
-		Properties properties = new Properties();
-		
-		
-		propertiesFactoryBean.setProperties(properties);
-		
-		//instance.setStaticModels(staticModels);
-		return null;
+
+		PropertiesFactoryBean pfb = new PropertiesFactoryBean();
+		Resource resource = new ClassPathResource("freemarkerstatic.properties");
+		pfb.setLocation(resource);
+
+		try {
+			instance.setStaticModels(pfb.getObject());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return instance;
 	}
+	
 }

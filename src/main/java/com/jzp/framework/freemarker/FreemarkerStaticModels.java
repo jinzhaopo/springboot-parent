@@ -7,7 +7,7 @@ import java.util.Set;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
 
-public class FreemarkerStaticModels extends HashMap<Object, Object> {
+public class FreemarkerStaticModels extends HashMap<String, Object> {
 
 	private static final long serialVersionUID = -1188392041350696649L;
 
