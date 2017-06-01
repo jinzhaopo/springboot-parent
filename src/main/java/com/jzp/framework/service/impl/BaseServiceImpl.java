@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.enums.ValuedEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
@@ -23,6 +24,7 @@ import com.jzp.framework.page.Order;
 import com.jzp.framework.page.Page;
 import com.jzp.framework.page.SearchFilter;
 import com.jzp.framework.service.BaseService;
+import com.jzp.framework.util.ValidationUtil;
 
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.Example.Criteria;
@@ -65,6 +67,8 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 	public Integer save(T t) {
 		// 新增的时候自动设置日期
 		setCreateDate(t);
+		// 验证
+		ValidationUtil.validation(t);
 		return this.mapper.insert(t);
 	}
 
@@ -96,6 +100,7 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 	public Integer save(List<T> ts) {
 		for (T t : ts) {
 			setCreateDate(t);
+			ValidationUtil.validation(t);
 		}
 		return this.mapper.insertList(ts);
 	}
@@ -440,7 +445,7 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 		page.setList(listByXml);
 		return page;
 	}
-	
+
 	/**
 	 * 
 	 * @Title: isUnique

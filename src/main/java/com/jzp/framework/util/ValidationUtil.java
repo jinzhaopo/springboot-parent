@@ -26,7 +26,7 @@ public class ValidationUtil {
 	 * @param obj
 	 * @return: void
 	 */
-	public void validation(Object obj) {
+	public static void validation(Object obj) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
 		Set<ConstraintViolation<Object>> constraintViolations = validator.validate(obj);// 验证某个对象,，其实也可以只验证其中的某一个属性的
@@ -34,8 +34,11 @@ public class ValidationUtil {
 		Iterator<ConstraintViolation<Object>> iter = constraintViolations.iterator();
 
 		while (iter.hasNext()) {
-			String message = iter.next().getMessage();
-			throw new SQLException(message);
+			ConstraintViolation<Object> next = iter.next();
+			String className = next.getRootBeanClass().getName();
+			String property = next.getPropertyPath().toString();
+			String message = next.getMessage();
+			throw new SQLException(className + "-->" + property + ":" + message);
 		}
 	}
 }
