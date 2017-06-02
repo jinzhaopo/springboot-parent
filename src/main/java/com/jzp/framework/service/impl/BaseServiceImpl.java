@@ -40,7 +40,6 @@ import tk.mybatis.mapper.entity.Example.OrderBy;
  */
 public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
-	@Autowired
 	private MyMapper<T> mapper;
 
 	/**
