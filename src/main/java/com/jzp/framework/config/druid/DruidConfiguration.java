@@ -1,4 +1,4 @@
-package com.jzp.framework.config;
+package com.jzp.framework.config.druid;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
