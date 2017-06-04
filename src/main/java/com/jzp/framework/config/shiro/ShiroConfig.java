@@ -3,13 +3,14 @@ package com.jzp.framework.config.shiro;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
-import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,7 +53,7 @@ public abstract class ShiroConfig {
 
 		// 登录成功后要跳转的链接
 		shiroFilterFactoryBean.setSuccessUrl("/index");
-		
+
 		// 未授权界面;
 		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
@@ -167,5 +168,17 @@ public abstract class ShiroConfig {
 		cookieRememberMeManager.setCookie(rememberMeCookie());
 		return cookieRememberMeManager;
 	}
+	
+	/**
+	 * 
+	 * @Title: initCredentialsMatcher
+	 * @Description: 设定Password校验.因为用自带的一直验证不通过所以没办法自己写
+	 * @return: void
+	 */
+	@Bean
+	public MyCredentialsMatcher getMyCredentialsMatcher() {
+		// 该句作用是重写shiro的密码验证，让shiro用我自己的验证
+		return new MyCredentialsMatcher();
 
+	}
 }

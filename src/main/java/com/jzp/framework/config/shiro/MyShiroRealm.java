@@ -1,5 +1,7 @@
 package com.jzp.framework.config.shiro;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -15,7 +17,8 @@ import org.apache.shiro.subject.PrincipalCollection;
  * @version: V1.0
  * @date: 2017年6月3日 下午3:20:03
  */
-public abstract  class MyShiroRealm extends AuthorizingRealm {
+public abstract class MyShiroRealm extends AuthorizingRealm {
+
 	/**
 	 * 
 	 * @Title: doGetAuthorizationInfo
@@ -47,7 +50,7 @@ public abstract  class MyShiroRealm extends AuthorizingRealm {
 	 * @see org.apache.shiro.realm.AuthenticatingRealm#doGetAuthenticationInfo(org.apache.shiro.authc.AuthenticationToken)
 	 */
 	@Override
-	protected abstract AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException ;
-	
-	
+	protected abstract AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
+			throws AuthenticationException;
+
 }
