@@ -10,11 +10,18 @@ package com.jzp.framework.constant;
  */
 public class Constant {
 
-
 	/**
 	 * 日期处理的格式
 	 */
-	public static final String DATE_PATTERNS[] = { "yyyy", "yyyy-MM", "yyyyMM", "yyyy/MM", "yyyy-MM-dd", "yyyyMMdd",
-			"yyyy/MM/dd", "yyyy-MM-dd HH:mm:ss", "yyyyMMddHHmmss", "yyyy/MM/dd HH:mm:ss" };
+	public static final String DATE_PATTERNS[] = { "yyyy", "yyyy-MM", "yyyyMM", "yyyy/MM", "yyyy-MM-dd", "yyyyMMdd", "yyyy/MM/dd", "yyyy-MM-dd HH:mm:ss", "yyyyMMddHHmmss", "yyyy/MM/dd HH:mm:ss" };
 
+	/**
+	 * shiro cookie 的名称
+	 */
+	public static final String SHIRO_COOKIE_NAME = "shiroCookieName";
+
+	/**
+	 * shiro cookie 保存的时间 以秒来计算
+	 */
+	public static final int SHIRO_COOKIE_DATE = 259200;
 }

@@ -3,6 +3,7 @@ package com.jzp.framework.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import com.jzp.framework.freemarker.FreemarkerStaticModels;
@@ -34,10 +35,10 @@ public class MvcConfig {
 	 */
 	@Bean(name = "viewResolver")
 	public FreeMarkerViewResolver getFreeMarkerViewResolver() {
-		FreeMarkerViewResolver freeMarkerViewResolver = new FreeMarkerViewResolver();
+		FreeMarkerViewResolver freeMarkerViewResolver = new FreeMarkerViewResolver("templates/*", freemarkerProperties.getSuffix());
 		freeMarkerViewResolver.setContentType("text/html; charset=UTF-8");
-		freeMarkerViewResolver.setSuffix(freemarkerProperties.getSuffix());
 		freeMarkerViewResolver.setAttributesMap(freemarkerStaticModels);
+		freeMarkerViewResolver.setViewClass(FreeMarkerView.class);
 		return freeMarkerViewResolver;
 
 	}

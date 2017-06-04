@@ -1,12 +1,15 @@
-package com.jzp.framework.config;
+
+package com.jzp.framework.config.freemarker;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
+import org.springframework.boot.autoconfigure.freemarker.FreeMarkerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -31,10 +34,15 @@ import com.jzp.framework.util.ApplicationContext;
 public class FreemarkerConfig {
 	@Autowired
 	private FreemarkerProperties freemarkerProperties;
+
 	@Autowired
 	private FlashMessageDirective flashMessageDirective;
+
 	@Autowired
 	private MessageMethod messageMethod;
+
+	@Autowired
+	private FreeMarkerProperties freeMarkerProperties;
 
 	/**
 	 * 
@@ -46,24 +54,8 @@ public class FreemarkerConfig {
 	@Bean(name = "freeMarkerConfigurer")
 	public FreeMarkerConfigurer getFreeMarkerConfigurer() {
 		FreeMarkerConfigurer fmcf = new FreeMarkerConfigurer();
-		fmcf.setTemplateLoaderPath(freemarkerProperties.getLoader_path());
 
-		Properties settings = new Properties();
-		settings.setProperty("defaultEncoding", freemarkerProperties.getEncoding());
-		settings.setProperty("url_escaping_charset", freemarkerProperties.getUrl_escaping_charset());
-		settings.setProperty("locale", freemarkerProperties.getLocale());
-		settings.setProperty("template_update_delay", freemarkerProperties.getUpdate_delay());
-		settings.setProperty("tag_syntax", "auto_detect");
-		settings.setProperty("whitespace_stripping", "true");
-		settings.setProperty("classic_compatible", "true");
-		settings.setProperty("number_format", freemarkerProperties.getNumber_format());
-		settings.setProperty("boolean_format", freemarkerProperties.getBoolean_format());
-		settings.setProperty("datetime_format", freemarkerProperties.getDatetime_format());
-		settings.setProperty("date_format", freemarkerProperties.getDate_format());
-		settings.setProperty("time_format", freemarkerProperties.getTime_format());
-		settings.setProperty("auto_import", freemarkerProperties.getAuto_import());
-		settings.setProperty("object_wrapper", "freemarker.ext.beans.BeansWrapper");
-		fmcf.setFreemarkerSettings(settings);
+		writerProperties(fmcf);
 
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("base", ApplicationContext.getContentPath());
@@ -73,7 +65,7 @@ public class FreemarkerConfig {
 		fmcf.setFreemarkerVariables(variables);
 		return fmcf;
 	}
-
+	
 	@Bean(name = "freemarkerStaticModels")
 	public FreemarkerStaticModels getFreemarkerStaticModels() {
 		FreemarkerStaticModels instance = FreemarkerStaticModels.getInstance();
@@ -91,4 +83,22 @@ public class FreemarkerConfig {
 		return instance;
 	}
 
+	/**
+	 * 
+	 * @Title: writerProperties
+	 * @Description: 将springboot中的freemarkerProperity配置给设置到自己的本地中
+	 * @param factory
+	 * @return: void
+	 */
+	private void writerProperties(FreeMarkerConfigurer factory) {
+		factory.setTemplateLoaderPaths(this.freeMarkerProperties.getTemplateLoaderPath());
+		factory.setPreferFileSystemAccess(this.freeMarkerProperties.isPreferFileSystemAccess());
+		factory.setDefaultEncoding(this.freeMarkerProperties.getCharsetName());
+
+		Properties settings = new Properties();
+		settings.putAll(this.freeMarkerProperties.getSettings());
+		
+
+		factory.setFreemarkerSettings(settings);
+	}
 }
