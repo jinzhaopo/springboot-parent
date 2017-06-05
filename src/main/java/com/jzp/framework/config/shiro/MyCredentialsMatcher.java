@@ -25,7 +25,11 @@ public class MyCredentialsMatcher extends SimpleCredentialsMatcher {
 
 		System.out.println(new String(token.getPassword()) + "-------------" + accountCredentials.toString());
 
-		return true;
+		String tokenStr = new String(token.getPassword());
+		
+		String accountCredentialsStr = accountCredentials.toString();
+		
+		return tokenStr.equals(accountCredentialsStr);
 
 		// 将密码加密与系统加密后的密码校验，内容一致就返回true,不一致就返回false
 		// return super.doCredentialsMatch(token, info) ;

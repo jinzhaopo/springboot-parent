@@ -46,7 +46,18 @@ public abstract class ShiroConfig {
 
 		// <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
 		// <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
+		filterChainDefinitionMap.put("/404/**", "anon");
+		filterChainDefinitionMap.put("/css/**", "anon");
+		filterChainDefinitionMap.put("/js/**", "anon");
+		filterChainDefinitionMap.put("/font/**", "anon");
+		filterChainDefinitionMap.put("/img/**", "anon");
 		filterChainDefinitionMap.put("/**", "authc");
+
+		// //配置记住我或认证通过可以访问的地址
+		//
+		// filterChainDefinitionMap.put("/index", "user");
+		//
+		// filterChainDefinitionMap.put("/", "user");
 
 		// 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
 		shiroFilterFactoryBean.setLoginUrl("/login");
@@ -168,7 +179,7 @@ public abstract class ShiroConfig {
 		cookieRememberMeManager.setCookie(rememberMeCookie());
 		return cookieRememberMeManager;
 	}
-	
+
 	/**
 	 * 
 	 * @Title: initCredentialsMatcher

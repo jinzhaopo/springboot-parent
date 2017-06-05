@@ -21,6 +21,7 @@ import com.jzp.framework.freemarker.directive.FlashMessageDirective;
 import com.jzp.framework.freemarker.method.MessageMethod;
 import com.jzp.framework.properties.FreemarkerProperties;
 import com.jzp.framework.util.ApplicationContext;
+import com.jzp.framework.util.RequestUtil;
 
 /**
  * 
@@ -62,10 +63,11 @@ public class FreemarkerConfig {
 		variables.put("locale", freemarkerProperties.getLocale());
 		variables.put("message", messageMethod);
 		variables.put("flash_message", flashMessageDirective);
+		
 		fmcf.setFreemarkerVariables(variables);
 		return fmcf;
 	}
-	
+
 	@Bean(name = "freemarkerStaticModels")
 	public FreemarkerStaticModels getFreemarkerStaticModels() {
 		FreemarkerStaticModels instance = FreemarkerStaticModels.getInstance();
@@ -97,7 +99,20 @@ public class FreemarkerConfig {
 
 		Properties settings = new Properties();
 		settings.putAll(this.freeMarkerProperties.getSettings());
-		
+		settings.put("defaultEncoding", freemarkerProperties.getEncoding());
+		settings.put("url_escaping_charset", freemarkerProperties.getUrl_escaping_charset());
+		settings.put("locale", freemarkerProperties.getLocale());
+		settings.put("template_update_delay", freemarkerProperties.getUpdate_delay());
+		settings.put("tag_syntax", "auto_detect");
+		settings.put("whitespace_stripping", "true");
+		settings.put("classic_compatible", "true");
+		settings.put("number_format", freemarkerProperties.getNumber_format());
+		settings.put("boolean_format", freemarkerProperties.getBoolean_format());
+		settings.put("datetime_format", freemarkerProperties.getDatetime_format());
+		settings.put("date_format", freemarkerProperties.getDate_format());
+		settings.put("time_format", freemarkerProperties.getTime_format());
+		settings.put("auto_import", freemarkerProperties.getAuto_import());
+		settings.put("object_wrapper", "freemarker.ext.beans.BeansWrapper");
 
 		factory.setFreemarkerSettings(settings);
 	}
