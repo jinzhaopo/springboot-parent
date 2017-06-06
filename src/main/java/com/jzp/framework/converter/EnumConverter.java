@@ -1,4 +1,4 @@
-package com.jzp.framework.Converter;
+package com.jzp.framework.converter;
 
 import org.apache.commons.beanutils.converters.AbstractConverter;
 

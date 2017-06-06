@@ -4,7 +4,7 @@ import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.Converter;
 import org.apache.commons.beanutils.converters.ArrayConverter;
 
-import com.jzp.framework.Converter.EnumConverter;
+import com.jzp.framework.converter.EnumConverter;
 
 /**
  * 
