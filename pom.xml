@@ -27,6 +27,7 @@
 		<commons-codec.version>1.7</commons-codec.version>
 
 		<shiro.version>1.2.2</shiro.version>
+		<zxing.version>3.3.0</zxing.version>
 	</properties>
 
 	<!-- Inherit defaults from Spring Boot -->
@@ -205,6 +206,18 @@
 					<groupId>net.sf.ehcache</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>${zxing.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>${zxing.version}</version>
 		</dependency>
 
 		<!-- shiro spring. -->
