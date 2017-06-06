@@ -108,4 +108,19 @@ public class ResponseUtil {
 		errors.addErrorString(message);
 		return errors.showFrontErrorAjax(response);
 	}
+	
+	/**
+	 * 
+	 * @Title: setImage
+	 * @Description: 设置response以图片的显示输出
+	 * @param response
+	 * @return: void
+	 */
+	public static void setImage(HttpServletResponse response) {
+		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setHeader("Cache-Control", "no-store");
+		response.setDateHeader("Expires", 0L);
+		response.setContentType("image/jpeg");// 以图片的形式显示
+	}
 }

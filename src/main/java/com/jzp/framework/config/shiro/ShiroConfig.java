@@ -51,6 +51,7 @@ public abstract class ShiroConfig {
 		filterChainDefinitionMap.put("/js/**", "anon");
 		filterChainDefinitionMap.put("/font/**", "anon");
 		filterChainDefinitionMap.put("/img/**", "anon");
+		filterChainDefinitionMap.put("/common/**", "anon");
 		filterChainDefinitionMap.put("/**", "authc");
 
 		// //配置记住我或认证通过可以访问的地址

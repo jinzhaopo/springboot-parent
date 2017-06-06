@@ -29,15 +29,14 @@ public class EncodingConvertFilter extends OncePerRequestFilter {
 	/**
 	 * 页面过来的编码
 	 */
-	private String fromEncoding = "ios8859-1";
+	private static String fromEncoding = "ISO8859-1";
 	/**
 	 * 要转变的编码
 	 */
-	private String toEncoding = "UTF-8";
+	private static String toEncoding = "UTF-8";
 
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			for (Iterator<String[]> iterator = request.getParameterMap().values().iterator(); iterator.hasNext();) {
 				String as[] = (String[]) iterator.next();
