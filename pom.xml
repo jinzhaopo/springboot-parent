@@ -39,10 +39,30 @@
 
 	<dependencies>
 		<!-- 这是Spring Boot的核心启动器，包含了自动配置、日志和YAML。 -->
+		<!-- 忽略自带的日志框架. -->
+
+		<!-- 忽略自带的日志框架. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
+
+
+		<!-- log4j. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j</artifactId>
+			<version>1.3.2.RELEASE</version>
+		</dependency>
+
+
 		<dependency>
 			<!-- mysql -->
 			<groupId>mysql</groupId>
